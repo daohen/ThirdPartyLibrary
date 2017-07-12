@@ -8,7 +8,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * EMAIL: alunfeixue2011@gmail.com
  * DATA : 2017/07/12 22:29
  */
-public class OkHttpFactory {
+public class OkHttpClientFactory {
 
     //REMIND:注意 有待构建更可控的OkHttpClick
 

@@ -1,6 +1,6 @@
 package com.daohen.thirdparty.library.retrofit;
 
-import com.daohen.thirdparty.library.okhttp.OkHttpFactory;
+import com.daohen.thirdparty.library.okhttp.OkHttpClientFactory;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -18,7 +18,7 @@ public class RetrofitFactory {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(url)
-                .client(OkHttpFactory.getDefault())
+                .client(OkHttpClientFactory.getDefault())
                 .build();
     }
 
