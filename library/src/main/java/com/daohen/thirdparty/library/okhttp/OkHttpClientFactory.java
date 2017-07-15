@@ -14,7 +14,7 @@ public class OkHttpClientFactory {
 
     public static OkHttpClient getDefault(){
         return new OkHttpClient.Builder()
-                .addInterceptor(new HttpLoggingInterceptor())
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
     }
 

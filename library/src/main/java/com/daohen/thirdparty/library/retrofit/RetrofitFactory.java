@@ -3,6 +3,7 @@ package com.daohen.thirdparty.library.retrofit;
 import com.daohen.thirdparty.library.okhttp.OkHttpClientFactory;
 
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -18,6 +19,7 @@ public class RetrofitFactory {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(url)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(OkHttpClientFactory.getDefault())
                 .build();
     }
