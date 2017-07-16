@@ -1,5 +1,9 @@
 package com.daohen.thirdparty.library.okhttp;
 
+import android.content.Context;
+
+import java.util.Map;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -16,6 +20,46 @@ public class OkHttpClientFactory {
         return new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
+    }
+
+    public static class Builder{
+
+        OkHttpClient.Builder builder;
+
+        public Builder(){
+            builder = new OkHttpClient.Builder();
+        }
+
+        public Builder addNetworkInterceptor(HttpLoggingInterceptor.Level level){
+            builder.addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(level));
+            return this;
+        }
+
+        public Builder addHeaderInterceptor(Map<String, String> headers){
+            builder.addInterceptor(new HeaderInterceptor(headers));
+            return this;
+        }
+
+        public Builder certificatePinner(Map<String, String> certificates){
+            builder.certificatePinner(CertificatePinnerFactory.generate(certificates));
+            return this;
+        }
+
+        public Builder trustHttps(Context context, int[] certificates, String[] hostUrls, boolean isAllTrust){
+            if (isAllTrust){
+                builder.socketFactory(TrustHttpsFactory.getDefaultSSLSocketFactory());
+                builder.hostnameVerifier(TrustHttpsFactory.getDefaultHostnameVerifier());
+            } else {
+                builder.socketFactory(TrustHttpsFactory.getSSLSocketFactory(context, certificates));
+                builder.hostnameVerifier(TrustHttpsFactory.getHostnameVerifier(hostUrls));
+            }
+            return this;
+        }
+
+        public OkHttpClient build(){
+            return builder.build();
+        }
+
     }
 
 }
