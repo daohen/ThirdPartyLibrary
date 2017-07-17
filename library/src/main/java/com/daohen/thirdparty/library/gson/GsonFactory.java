@@ -1,5 +1,6 @@
 package com.daohen.thirdparty.library.gson;
 
+import com.daohen.personal.toolbox.library.Singleton;
 import com.google.gson.Gson;
 
 /**
@@ -9,8 +10,18 @@ import com.google.gson.Gson;
  */
 public class GsonFactory {
 
-    public static Gson getDefault(){
+    public static Gson getGson(){
         return new Gson();
     }
 
+    public static Gson getDefault(){
+        return gDefault.get();
+    }
+
+    private static final Singleton<Gson> gDefault = new Singleton<Gson>() {
+        @Override
+        protected Gson create() {
+            return getGson();
+        }
+    };
 }
