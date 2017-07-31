@@ -12,6 +12,4 @@ import com.bumptech.glide.module.AppGlideModule;
 @GlideModule
 public class DaohenAppGlideModule extends AppGlideModule {
 
-    
-
 }
