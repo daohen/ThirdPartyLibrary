@@ -13,7 +13,7 @@ import retrofit2.Response;
  * DATE : 2017/08/03 00:14
  */
 
-public class ErrorCheckerTransformer<R> implements ObservableTransformer<Response<R>, R> {
+public class ErrorCheckerTransformer<R extends BaseResponse> implements ObservableTransformer<Response<R>, R> {
 
     @Override
     public ObservableSource<R> apply(@NonNull Observable<Response<R>> upstream) {
