@@ -13,14 +13,14 @@ import retrofit2.Response;
  * DATE : 2017/08/03 00:14
  */
 
-public class ErrorCheckerTransformer<T extends Response<R>, R> implements ObservableTransformer<T, R> {
+public class ErrorCheckerTransformer<R> implements ObservableTransformer<Response<R>, R> {
+
     @Override
-    public ObservableSource<R> apply(@NonNull Observable<T> upstream) {
-        return upstream.map(new Function<T, R>() {
+    public ObservableSource<R> apply(@NonNull Observable<Response<R>> upstream) {
+        return upstream.map(new Function<Response<R>, R>() {
             @Override
-            public R apply(@NonNull T t) throws Exception {
-                // TODO: 2017/8/3 错误状态的待处理
-                return t.body();
+            public R apply(@NonNull Response<R> rResponse) throws Exception {
+                return rResponse.body();
             }
         });
     }

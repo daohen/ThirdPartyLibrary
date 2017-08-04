@@ -18,6 +18,6 @@ public class DefaultTransformer<R extends BaseResponse> implements ObservableTra
     public ObservableSource<R> apply(@NonNull Observable<Response<R>> upstream) {
         return upstream
                 .compose(new SchedulerTransformer<Response<R>>())
-                .compose(new ErrorCheckerTransformer<Response<R>, R>());
+                .compose(new ErrorCheckerTransformer<R>());
     }
 }
