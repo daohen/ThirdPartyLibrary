@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers;
  * DATE : 2017/08/15 19:27
  */
 
-public class SchedulerSingleTransformer<T> implements SingleTransformer<T, T> {
+public class SingleSchedulerTransformer<T> implements SingleTransformer<T, T> {
 
     @Override
     public SingleSource<T> apply(@NonNull Single<T> upstream) {
