@@ -46,4 +46,6 @@ dependencies {
         // Excludes the support library because it's already included by Glide.
         transitive = false
     }
+
+    provided 'com.github.daohen:personalToolboxLibrary:master-SNAPSHOT'
 }
