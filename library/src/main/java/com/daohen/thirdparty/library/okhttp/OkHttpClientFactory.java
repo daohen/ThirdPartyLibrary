@@ -3,6 +3,7 @@ package com.daohen.thirdparty.library.okhttp;
 import android.content.Context;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -25,6 +26,7 @@ public class OkHttpClientFactory {
     public static class Builder{
 
         OkHttpClient.Builder builder;
+        long connectTimeout = 30000;
 
         public Builder(){
             builder = new OkHttpClient.Builder();
@@ -45,6 +47,11 @@ public class OkHttpClientFactory {
             return this;
         }
 
+        public Builder connectTimeout(long second){
+            this.connectTimeout = second;
+            return this;
+        }
+
         public Builder trustHttps(Context context, int[] certificates, String[] hostUrls, boolean isAllTrust){
             if (isAllTrust){
                 builder.socketFactory(TrustHttpsFactory.getDefaultSSLSocketFactory());
@@ -57,6 +64,7 @@ public class OkHttpClientFactory {
         }
 
         public OkHttpClient build(){
+            builder.connectTimeout(connectTimeout, TimeUnit.SECONDS);
             return builder.build();
         }
 
