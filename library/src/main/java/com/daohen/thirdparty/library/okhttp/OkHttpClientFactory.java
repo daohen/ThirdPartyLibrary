@@ -26,7 +26,7 @@ public class OkHttpClientFactory {
     public static class Builder{
 
         OkHttpClient.Builder builder;
-        long connectTimeout = 30000;
+        long connectTimeout = 30;
 
         public Builder(){
             builder = new OkHttpClient.Builder();
